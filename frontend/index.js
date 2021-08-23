@@ -13,8 +13,8 @@ fetch("http://localhost:3000/api/teddies/")
                                                                 <img src="${article.imageUrl}" alt="ourson" class="ourson" >
                                                             </a>
                                                             <span class="section2--infobear">
-                                                                <h4 class="section2--infobear__nom">${article.name}</h4>
-                                                                <p class="section2--infobear__prix__p2">${article.price/100 + "€"}</p>                                                                       
+                                                                <h4 class="section2--infobear__nom">${article.name}</h4> &ensp;
+                                                                &ensp;<p class="section2--infobear__prix__p2">${article.price/100 + "€"}</p>                                                                       
                                                                 
                                                             </span>
                                                             
