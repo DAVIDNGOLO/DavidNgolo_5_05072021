@@ -44,14 +44,15 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
 
 document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   e.preventDefault();
-  console.log("bonjour")
-  let couleur = document.getElementById('#couleur option:selected');
+  
+  let couleur = document.getElementById('couleur').value;
+  console.log(couleur)
   const teddy = {
     //données du panier
     id: article._id,
     name: article.name,
     color: couleur,
-    price: article.price 
+    price: article.price/100 + "€" 
   }
   //stockage de la commande avec un message d'alerte
   
@@ -59,11 +60,15 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   panier.push(teddy);
   window.localStorage.setItem('panier', JSON.stringify(panier));
   alert("L'article a bien été ajouté à votre panier")
+
+  //redirige vers le panier
+  window.location = "panier.html";
 })
 
 
 
 request.send();
+
 
   })
   .catch(function (err) {});
