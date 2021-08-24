@@ -13,7 +13,7 @@ if (panier === null) {
   <div class="container-panier-vide">
     <div> le panier est vide</div>
   </div> 
-  `;
+  `; 
   elementsPanier.innerHTML = panierVide;
 } else {
   let structureProduitPanier = [];
@@ -35,12 +35,14 @@ if (panier === null) {
 //sélection des références de tous les boutons btn-supprimer
 
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
-console.log(btn_supprimer);
+
+
 
 for (let l = 0; 1 < btn_supprimer.length; l++){
+  console.log("salut");
   btn_supprimer[l].addEventListener("click" , (event) =>{
     event.preventDefault();
-    console.log(event);
+    
     //sélection de l'id du produit qui va etre supprimé en cliquant sur le bouton
     let id_selectionner_suppression = panier[l].id;
     console.log(id_selectionner_suppression);
