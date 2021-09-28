@@ -47,17 +47,23 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   
   let couleur = document.getElementById('couleur').value;
   console.log(couleur)
-  const teddy = {
+  const product = {
     //données du panier
     id: article._id,
     name: article.name,
     color: couleur,
-    price: article.price/100 + "€" 
+    price: article.price
   }
   //stockage de la commande avec un message d'alerte
   
   let panier = JSON.parse(localStorage.getItem('panier')) ?? [];
-  panier.push(teddy);
+
+  //?? = diminutif d'un if/else : si il n'y a pas de produit enregistré, creation d'un array
+
+  //JSONPARSE pour convertir les donnés  qui sont au format JSON dans le localstorage en objet javascript.
+
+//gerer quantite panier
+  panier.push(product);
   window.localStorage.setItem('panier', JSON.stringify(panier));
   alert("L'article a bien été ajouté à votre panier")
 

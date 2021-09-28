@@ -8,7 +8,7 @@ const elementsPanier = document.querySelector("#container-panier");
 console.log(elementsPanier);
 ////si vide : panier vide
 
-if (panier === null) {
+if (panier === null || panier == 0 ) {
   const panierVide = `
   <div class="container-panier-vide">
     <div> le panier est vide</div>
@@ -17,41 +17,47 @@ if (panier === null) {
   elementsPanier.innerHTML = panierVide;
 } else {
   let structureProduitPanier = [];
-  for (k = 0; k < panier.length; k++) {
-    structureProduitPanier =
-      structureProduitPanier +
+  
+    for (produit of panier){
+    const price = currencyPrice(produit.price);
+    
+      elementsPanier.innerHTML +=
       `
     <div class="container-recapitulatif">
-      <div> Produits : ${panier[k].name} | Couleur : ${panier[k].couleur} | Prix : ${panier[k].price}  - <button class="btn-supprimer"> supprimer article </button> 
-    </div>     
+     
+      <div> Produits : ${produit.name} | Couleur : ${produit.color} | Prix : ${price}  - <button class="btn-supprimer"> supprimer article </button> 
+    </div>  
     `;
   }
-  if (k == panier.length) {
-    //injection html panier
-    elementsPanier.innerHTML = structureProduitPanier;
-  }
-}
-
-//sélection des références de tous les boutons btn-supprimer
-
-let btn_supprimer = document.querySelectorAll(".btn-supprimer");
-
-
-
-for (let l = 0; 1 < btn_supprimer.length; l++){
-  console.log("salut");
-  btn_supprimer[l].addEventListener("click" , (event) =>{
-    event.preventDefault();
-    
-    //sélection de l'id du produit qui va etre supprimé en cliquant sur le bouton
-    let id_selectionner_suppression = panier[l].id;
-    console.log(id_selectionner_suppression);
-
-    //avec la methode filter je selectionne les elements a garder et supprimer l'element ou le btn supprimer a ete clique
-    panier = panier.filter( el => el._id !== id_selectionner_suppression);
-      console.log(panier);
-    
-  })
+  //***************** */
 
 }
+
+let prixTotalCalcul = [];
+for (produit of panier ){
+  let prixProduitPanier = produit.price;
+  console.log(prixProduitPanier);
+
+  //mettre les prix du panier dans la variable prixTotal 
+
+  prixTotalCalcul.push(prixProduitPanier)
+
+  console.log(prixTotalCalcul);
+
+}
+
+//additionner les prix dans le tableau de la variable prixTotalCalcul methode reducer
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+console.log(prixTotalCalcul.reduce(reducer));
+
+document.getElementById('prixtotal').innerHTML =  `<div> MONTANT TOTAL = ${prixTotalCalcul.reduce(reducer)/100 + "€"} </div>  
+`  ;
+
+
+
+
+
+
 

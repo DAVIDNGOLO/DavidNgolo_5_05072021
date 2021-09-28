@@ -190,6 +190,11 @@ h3{
  background-color: antiquewhite;
  width: 100%;
 }
+#prixtotal{
+    display: flex;
+    justify-content: center;
+    background-color: lightskyblue;
+}
 
 /************/
 /*Page confirmation*/

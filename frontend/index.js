@@ -22,4 +22,4 @@ fetch("http://localhost:3000/api/teddies/")
     }
   })
   .catch(function (err) {});
-  console.log(res.json());
+  
