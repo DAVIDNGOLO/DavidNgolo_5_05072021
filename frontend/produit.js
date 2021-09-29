@@ -23,7 +23,6 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
             select += "<option>" + item + "</option>";
           });
           select += "</select>";
-      
           document.querySelector(".container1").innerHTML += 
                                                         `<article>
                                                                     <a href="#"><img src="${article.imageUrl}" alt="ourson" class="ourson"></a>
@@ -33,15 +32,35 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
                                                                               <p class="section2--description">${article.description}</p>
                                                                             <p class="section2--infobear__prix__p2">${article.price/100 + "€"}</p>                                                                       
                                                                             </br>${select}</br>
+                                                                            <label for="quantite_produit">choisir la quantité</label>
+                                                                                <select name="quantite_produit" id="quantite_produit"></select>
+                                                                                <br>
+                                                                                <br>
                                                                                 <button id="btnProduct" class="add-to-prod" '><span> Commander </span></button></br>                                                                                             
                                                                             
-                                                                            
+                                                                              
                                                                         
                                                                         </span>           
                                                         </article>`;  
                                                        
-//enregistrement dans le LocalStorage des données du panier, compilation des données id color price
 
+
+//afficher les quantités dans le formulaire
+const positionElementQuantite = document.getElementById("quantite_produit");
+console.log(positionElementQuantite);
+positionElementQuantite.innerHTML = `
+<option value= "1">1</option>
+<option value= "2">2</option>
+<option value= "3">3</option>
+<option value= "4">4</option>
+<option value= "5">5</option>
+`;
+ //gerer quantite panier
+ const choixQuantite = positionElementQuantite.value;
+ console.log(choixQuantite);
+
+
+//enregistrement dans le LocalStorage des données du panier, compilation des données id color price
 document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   e.preventDefault();
   
@@ -52,8 +71,12 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
     id: article._id,
     name: article.name,
     color: couleur,
-    price: article.price
+    price: article.price * choixQuantite,
+    quantites: choixQuantite, 
+    
   }
+  console.log(product);
+ 
   //stockage de la commande avec un message d'alerte
   
   let panier = JSON.parse(localStorage.getItem('panier')) ?? [];
@@ -62,13 +85,18 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
 
   //JSONPARSE pour convertir les donnés  qui sont au format JSON dans le localstorage en objet javascript.
 
-//gerer quantite panier
+
+
+
+
+
+
   panier.push(product);
   window.localStorage.setItem('panier', JSON.stringify(panier));
   alert("L'article a bien été ajouté à votre panier")
 
   //redirige vers le panier
-  window.location = "panier.html";
+  //window.location = "panier.html";
 })
 
 
