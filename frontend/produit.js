@@ -43,27 +43,33 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
                                                                         </span>           
                                                         </article>`;  
                                                        
+//Choisir la quantité de produit possible 
 
-
-//afficher les quantités dans le formulaire
-const positionElementQuantite = document.getElementById("quantite_produit");
-console.log(positionElementQuantite);
-positionElementQuantite.innerHTML = `
+const structureQuantité = `
 <option value= "1">1</option>
 <option value= "2">2</option>
 <option value= "3">3</option>
 <option value= "4">4</option>
 <option value= "5">5</option>
 `;
- //gerer quantite panier
- const choixQuantite = positionElementQuantite.value;
- console.log(choixQuantite);
+
+
+
+//afficher les quantités dans le formulaire
+const positionElementQuantite = document.getElementById("quantite_produit");
+console.log(positionElementQuantite);
+positionElementQuantite.innerHTML = structureQuantité;
+
+ 
+
 
 
 //enregistrement dans le LocalStorage des données du panier, compilation des données id color price
 document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   e.preventDefault();
-  
+  const choixQuantite = positionElementQuantite.value;
+console.log("choixQuantite");
+console.log(choixQuantite);
   let couleur = document.getElementById('couleur').value;
   console.log(couleur)
   const product = {
@@ -71,7 +77,7 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
     id: article._id,
     name: article.name,
     color: couleur,
-    price: article.price * choixQuantite,
+    price: article.price,
     quantites: choixQuantite, 
     
   }
@@ -84,15 +90,29 @@ document.querySelector('#btnProduct').addEventListener( "click", (e) => {
   //?? = diminutif d'un if/else : si il n'y a pas de produit enregistré, creation d'un array
 
   //JSONPARSE pour convertir les donnés  qui sont au format JSON dans le localstorage en objet javascript.
+console.log(panier);
+
+for (produit of panier){
+  console.log(product.name + product.color) ;
+  console.log(produit.name + produit.color);
+  if ((product.name === produit.name) && (product.color === produit.color)){
+    console.log("true");
+    produit.quantites = parseInt(produit.quantites) + parseInt(choixQuantite);
+    console.log(produit.quantites);
+    
+  }
+  else{
+    panier.push(product);
+  }
+}
 
 
 
 
 
-
-
-  panier.push(product);
+  
   window.localStorage.setItem('panier', JSON.stringify(panier));
+  
   alert("L'article a bien été ajouté à votre panier")
 
   //redirige vers le panier
