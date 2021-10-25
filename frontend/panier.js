@@ -25,7 +25,7 @@ if (panier === null || panier == 0 ) {
       `
     <div class="container-recapitulatif">
      
-      <div> Produits : ${produit.name} | Couleur : ${produit.color} | Prix : ${price} |  Quantité : ${produit.quantites}   - <button class="btn-supprimer"> supprimer article </button> 
+      <div> Produits : ${produit.name} | Couleur : ${produit.color} | Prix  : ${price} |  Quantité : ${produit.quantites} <button class="btn-supprimer"> supprimer article </button> 
     </div>  
     `;
   }
