@@ -39,14 +39,13 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
                                                         </article>`;
 
     //Choisir la quantité de produit possible
-
     const structureQuantité = `
-<option value= "1">1</option>
-<option value= "2">2</option>
-<option value= "3">3</option>
-<option value= "4">4</option>
-<option value= "5">5</option>
-`;
+                              <option value= "1">1</option>
+                              <option value= "2">2</option>
+                              <option value= "3">3</option>
+                              <option value= "4">4</option>
+                              <option value= "5">5</option>
+                              `;
 
     //afficher les quantités dans le formulaire
     const positionElementQuantite = document.getElementById("quantite_produit");
@@ -103,7 +102,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
       alert("L'article a bien été ajouté à votre panier");
 
       //redirige vers le panier
-      //window.location = "panier.html";
+      window.location = "panier.html";
     });
 
     request.send();
