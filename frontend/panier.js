@@ -1,12 +1,12 @@
-// recuperer donnée localstorage
+// Recuperer donnée localstorage
 
 let panier = JSON.parse(localStorage.getItem("panier"));
 console.log(panier);
-//selection de la classe où je vais injecter le code html
+//Selection de la classe où je vais injecter le code html
 
 const elementsPanier = document.querySelector("#container-panier");
 console.log(elementsPanier);
-////si vide : panier vide
+////Si vide : panier vide
 
 if (panier === null || panier == 0) {
   const panierVide = `
@@ -36,7 +36,7 @@ for (produit of panier) {
   let prixProduitPanier = produit.price;
   console.log(prixProduitPanier);
 
-  //mettre les prix du panier dans la variable prixTotal
+  //Mettre les prix du panier dans la variable prixTotal
   products.push(produit.id);
 
   prixTotalCalcul.push(prixProduitPanier);
@@ -44,7 +44,7 @@ for (produit of panier) {
   console.log(prixTotalCalcul);
 }
 console.log(products);
-//additionner les prix dans le tableau de la variable prixTotalCalcul methode reducer
+//Additionner les prix dans le tableau de la variable prixTotalCalcul methode reducer
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -53,9 +53,9 @@ console.log(prixTotalCalcul.reduce(reducer));
 document.getElementById("prixtotal").innerHTML = `<div> MONTANT TOTAL = ${prixTotalCalcul.reduce(reducer) / 100 + "€"} </div>  
 `;
 
-//formulaire commande/////////
+//Formulaire commande/////////
 const afficherFormulaire = () => {
-  //selection element dom pour le positionnement du formulaire
+  //Selection element dom pour le positionnement du formulaire
   const positionFormulaire = document.querySelector("#section2");
   const structureFormulaire = `
                               <!-- Formulaire-->
@@ -89,7 +89,7 @@ const afficherFormulaire = () => {
                                 
 
                             </div>`;
-  //injection HTML
+  //Injection HTML
   positionFormulaire.insertAdjacentHTML("afterend", structureFormulaire);
 };
 
@@ -101,10 +101,10 @@ afficherFormulaire();
 const btnEnvoyerFormulaire = document.querySelector("#section2--envoyerFormulaire");
 
 btnEnvoyerFormulaire.addEventListener("click", (e) => {
-  //stoper action definit par defaut
+  //Stoper action definit par defaut
   e.preventDefault();
 
-  //recuperer des valeurs du formulaire
+  //Recuperer des valeurs du formulaire
   const contact = {
     firstName: document.querySelector("#prenom").value,
     lastName: document.querySelector("#nom").value,
@@ -130,7 +130,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
   };
 
   function prenomControle() {
-    //controle de la validité du prénom
+    //Controle de la validité du prénom
     const lePrenom = contact.firstName;
 
     if (regExPrenomNomVille(lePrenom)) {
@@ -142,7 +142,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
   }
 
   function nomControle() {
-    //controle de la validité du nom
+    //Controle de la validité du nom
     const leNom = contact.lastName;
 
     if (regExPrenomNomVille(leNom)) {
@@ -153,7 +153,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     }
   }
   function villeControle() {
-    //controle de la validité de la ville
+    //Controle de la validité de la ville
     const laVille = contact.city;
 
     if (regExPrenomNomVille(laVille)) {
@@ -165,7 +165,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
   }
 
   function emailControle() {
-    //controle de la validité du mail
+    //Controle de la validité du mail
     const leMail = contact.email;
 
     if (regExEmail(leMail)) {
@@ -177,7 +177,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
   }
 
   function adresseControle() {
-    //controle de la validité de l'adresse
+    //Controle de la validité de l'adresse
     const leAdresse = contact.address;
     if (regExAdresse(leAdresse)) {
       return true;
@@ -187,18 +187,18 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     }
   }
 
-  //controle validité formulaire avant l'envoie dans le localstorage
+  //Controle validité formulaire avant l'envoie dans le localstorage
   if (prenomControle() && nomControle() && emailControle() && adresseControle() && villeControle()) {
     //Mettre l'objet contact dans le local storage
 
     localStorage.setItem("contact", JSON.stringify(contact));
-    //enregistrer prix total localstorage
-    //localStorage.setItem("prixTotal",JSON.stringify(prixTotalCalcul));
+    //Enregistrer prix total localstorage
+    //LocalStorage.setItem("prixTotal",JSON.stringify(prixTotalCalcul));
   } else {
     alert("Veuillez bien remplir le formulaire");
   }
 
-  //mettre les values du formulaire et les produits selectionnés dans un objet à envoyer vers le serveur
+  //Mettre les values du formulaire et les produits selectionnés dans un objet à envoyer vers le serveur
 
   const aEnvoyer = {
     contact,
@@ -207,7 +207,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
   };
   console.log(aEnvoyer);
 
-  //envoie de l'objet à envoyer dans le serveur
+  //Envoie de l'objet à envoyer dans le serveur
 
   fetch("http://localhost:3000/api/teddies/order", {
     method: "POST",
@@ -226,15 +226,15 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
       });
       console.log(response);
       console.log(response.orderId);
-      //mettre id dans le local storage
+      //Mettre id dans le local storage
     })
 
     .catch((error) => {
       alert(error);
     });
-  //clear le local storage
+  //Clear le local storage
 
-  //recuperer les infos dans la page de confirmation
-  //ensuite le clear du local storage
-  //window.location.href = "confirmation.html"
+  //Recuperer les infos dans la page de confirmation
+  //Ensuite le clear du local storage
+  //Window.location.href = "confirmation.html"
 });

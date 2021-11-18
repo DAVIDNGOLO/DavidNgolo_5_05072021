@@ -1,9 +1,9 @@
-// recherche de l'id dans l'URL
+// Recherche de l'id dans l'URL
 let params = new URLSearchParams(document.location.search);
 let idProduit = params.get("id");
 console.log(idProduit);
 
-//mise en forme des données
+//Mise en forme des données
 fetch("http://localhost:3000/api/teddies/" + idProduit)
   .then(function (res) {
     if (res.ok) {
@@ -13,7 +13,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
   .then((jsonArticle) => {
     let article = new Article(jsonArticle);
     console.log(article.price);
-    // mise en forme html du sélecteur de couleurs
+    // Mise en forme html du sélecteur de couleurs
     let select = "<select id='couleur'>";
     article.colors.forEach((item, i) => {
       select += "<option>" + item + "</option>";
@@ -47,12 +47,12 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
                               <option value= "5">5</option>
                               `;
 
-    //afficher les quantités dans le formulaire
+    //Afficher les quantités dans le formulaire
     const positionElementQuantite = document.getElementById("quantite_produit");
     console.log(positionElementQuantite);
     positionElementQuantite.innerHTML = structureQuantité;
 
-    //enregistrement dans le LocalStorage des données du panier, compilation des données id color price
+    //Enregistrement dans le LocalStorage des données du panier, compilation des données ID color price
     document.querySelector("#btnProduct").addEventListener("click", (e) => {
       e.preventDefault();
       const choixQuantite = positionElementQuantite.value;
@@ -61,7 +61,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
       let couleur = document.getElementById("couleur").value;
       console.log(couleur);
       const product = {
-        //données du panier
+        //Données du panier
         id: article._id,
         name: article.name,
         color: couleur,
@@ -71,7 +71,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
       };
       console.log(product);
 
-      //stockage de la commande avec un message d'alerte
+      //Stockage de la commande avec un message d'alerte
 
       let panier = JSON.parse(localStorage.getItem("panier")) ?? [];
 
@@ -96,12 +96,12 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
         panier.push(product);
       }
 
-      //stringify : transformer format javascript en format JSON
+      //Stringify : transformer format javascript en format JSON
       window.localStorage.setItem("panier", JSON.stringify(panier));
 
       alert("L'article a bien été ajouté à votre panier");
 
-      //redirige vers le panier
+      //Redirige vers le panier
       window.location = "panier.html";
     });
 

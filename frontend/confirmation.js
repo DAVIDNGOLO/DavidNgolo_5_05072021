@@ -1,4 +1,4 @@
-//recuperation de l'id de la commande
+//Recuperation de l'id de la commande
 
 const orderId = localStorage.getItem('orderId');
 console.log(orderId);
@@ -6,16 +6,16 @@ console.log(orderId);
 
 
 
-//recuperation total commande
+//Recuperation total commande
 
 const prixTotal = localStorage.getItem("prixTotalCalcul");
 console.log(`prixTotalCalcul : ${prixTotal}`);
 
 
-//structure html de la page confirmation
+//Structure html de la page confirmation
 
 
-//selection element du dom pour le positionnement
+//Selection element du dom pour le positionnement
 const positionConfirmation = document.querySelector("#section2--listeproduits__p2");
 
 const structureConfirmationCommande = `
@@ -43,12 +43,12 @@ const structureConfirmationCommande = `
                                                 </article>
                                         `;
 
-//injection HTML
+//Injection HTML
 
 positionConfirmation.insertAdjacentHTML("afterbegin" , structureConfirmationCommande);
 
 
-//effacer localstorage
+//Effacer localstorage
 
 function clearLocalStorage(key){
     localStorage.removeItem(key);
