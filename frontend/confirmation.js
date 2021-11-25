@@ -1,7 +1,7 @@
 //Recuperation de l'id de la commande
 
 const orderId = localStorage.getItem('orderId');
-console.log(orderId);
+
 
 
 
@@ -9,7 +9,7 @@ console.log(orderId);
 //Recuperation total commande
 
 const prixTotal = localStorage.getItem("prixTotalCalcul");
-console.log(`prixTotalCalcul : ${prixTotal}`);
+
 
 
 //Structure html de la page confirmation

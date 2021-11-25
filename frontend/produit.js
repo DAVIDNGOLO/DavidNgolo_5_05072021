@@ -1,7 +1,7 @@
 // Recherche de l'id dans l'URL
 let params = new URLSearchParams(document.location.search);
 let idProduit = params.get("id");
-console.log(idProduit);
+
 
 //Mise en forme des données
 fetch("http://localhost:3000/api/teddies/" + idProduit)
@@ -69,16 +69,16 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
 
         quantites: choixQuantite,
       };
-      console.log(product);
+      
 
-      //Stockage de la commande avec un message d'alerte
+      //Stockage de la commande 
 
       let panier = JSON.parse(localStorage.getItem("panier")) ?? [];
 
       //?? = diminutif d'un if/else : si il n'y a pas de produit enregistré, creation d'un array
 
       //JSONPARSE pour convertir les donnés  qui sont au format JSON dans le localstorage en objet javascript.
-      console.log(product);
+      
       let condition = true;
       for (produit of panier) {
         //console.log(product.name + product.color) ;
@@ -86,8 +86,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
         if (product.name === produit.name && product.color === produit.color) {
           console.log("true");
           produit.quantites = parseInt(produit.quantites) + parseInt(choixQuantite);
-          console.log(produit.quantites);
-          console.log(product);
+          
           condition = false;
         }
       }

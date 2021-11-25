@@ -1,11 +1,11 @@
 // Recuperer donnée localstorage
 
 let panier = JSON.parse(localStorage.getItem("panier"));
-console.log(panier);
+
 //Selection de la classe où je vais injecter le code html
 
 const elementsPanier = document.querySelector("#container-panier");
-console.log(elementsPanier);
+
 ////Si vide : panier vide
 
 if (panier === null || panier == 0) {
@@ -34,16 +34,16 @@ let products = [];
 let prixTotalCalcul = [];
 for (produit of panier) {
   let prixProduitPanier = produit.price;
-  console.log(prixProduitPanier);
+  
 
   //Mettre les prix du panier dans la variable prixTotal
   products.push(produit.id);
 
   prixTotalCalcul.push(prixProduitPanier);
 
-  console.log(prixTotalCalcul);
+ 
 }
-console.log(products);
+
 //Additionner les prix dans le tableau de la variable prixTotalCalcul methode reducer
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -205,7 +205,7 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     products,
     prixTotalCalcul,
   };
-  console.log(aEnvoyer);
+  
 
   //Envoie de l'objet à envoyer dans le serveur
 
