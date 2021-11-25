@@ -192,20 +192,14 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     //Mettre l'objet contact dans le local storage
 
     localStorage.setItem("contact", JSON.stringify(contact));
-    //Enregistrer prix total localstorage
-    //LocalStorage.setItem("prixTotal",JSON.stringify(prixTotalCalcul));
-  } else {
-    alert("Veuillez bien remplir le formulaire");
-  }
-
-  //Mettre les values du formulaire et les produits selectionnés dans un objet à envoyer vers le serveur
+    
+    //Mettre les values du formulaire et les produits selectionnés dans un objet à envoyer vers le serveur
 
   const aEnvoyer = {
     contact,
     products,
     prixTotalCalcul,
   };
-  
 
   //Envoie de l'objet à envoyer dans le serveur
 
@@ -232,6 +226,15 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     .catch((error) => {
       alert(error);
     });
+
+  } else {
+    alert("Veuillez bien remplir le formulaire");
+  }
+
+  
+  
+
+ 
   //Clear le local storage
 
   //Recuperer les infos dans la page de confirmation
