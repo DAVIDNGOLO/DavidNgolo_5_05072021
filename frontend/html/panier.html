@@ -5,19 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="/frontend/css/index.css" />
 
     <title>Oribears, oursons à personnaliser</title>
-    <script src="article.js" defer></script>
-    <script src="index.js" defer></script>
+    <script src="/frontend/js/article.js" defer></script>
+    <script src="/frontend/js/function.js" defer></script>
+    <script src="/frontend/js/panier.js" defer></script>
 </head>
 
 <body>
+
     <header>
-        <a href="#">
-            <img src="../backend/images/orinoco.png" alt="nomdusite" class="header--img">
+        <a href="/frontend/html/index.html">
+            <img src="/backend/images/orinoco.png" alt="nomdusite" class="header--img">
         </a>
-        <a href="panier.html" class="header--basket">
+        <a href="#" class="header--basket">
             Votre panier
         </a>
     </header>
@@ -27,17 +29,20 @@
             ORIBEARS
         </h1>
         <h2 class="section1--soustitre">
-            Personnalisez vos oursons 100% fait-main !
+            Récapitulatif de votre panier
         </h2>
     </section>
+    <div id="container-panier">
 
-    <section class="section2--listeproduits">
-        <h3>
-            Nos produits
-        </h3>
+    </div>
+    <div id="prixtotal">
 
-        <div class="container"></div>
+    </div>
+    <!-- Formulaire-->
+    <section id="section2">
+
     </section>
+
 
     <footer>
         <p class="footer">Orinoco | Entreprise de commerce en ligne</p>

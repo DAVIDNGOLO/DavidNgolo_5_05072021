@@ -1,19 +1,12 @@
 //Recuperation de l'id de la commande
 
-const orderId = localStorage.getItem('orderId');
-
-
-
-
+const orderId = localStorage.getItem("orderId");
 
 //Recuperation total commande
 
 const prixTotal = localStorage.getItem("prixTotalCalcul");
 
-
-
 //Structure html de la page confirmation
-
 
 //Selection element du dom pour le positionnement
 const positionConfirmation = document.querySelector("#section2--listeproduits__p2");
@@ -36,7 +29,7 @@ const structureConfirmationCommande = `
                                                         Numero de commande : ${orderId}
                                                     </p>
                                                     <p class="section2--confirmationcommande__total">
-                                                        Montant total : ${prixTotal/100 + "euros"} 
+                                                        Montant total : ${prixTotal / 100 + "euros"} 
                                                         
                                                     </p>
                                                     
@@ -45,18 +38,15 @@ const structureConfirmationCommande = `
 
 //Injection HTML
 
-positionConfirmation.insertAdjacentHTML("afterbegin" , structureConfirmationCommande);
-
+positionConfirmation.insertAdjacentHTML("afterbegin", structureConfirmationCommande);
 
 //Effacer localstorage
 
-function clearLocalStorage(key){
-    localStorage.removeItem(key);
-};
+function clearLocalStorage(key) {
+  localStorage.removeItem(key);
+}
 
 clearLocalStorage("OrderId");
 clearLocalStorage("contact");
 clearLocalStorage("panier");
 clearLocalStorage("prixTotalCalcul");
-
-

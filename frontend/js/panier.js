@@ -34,14 +34,11 @@ let products = [];
 let prixTotalCalcul = [];
 for (produit of panier) {
   let prixProduitPanier = produit.price;
-  
 
   //Mettre les prix du panier dans la variable prixTotal
   products.push(produit.id);
 
   prixTotalCalcul.push(prixProduitPanier);
-
- 
 }
 
 //Additionner les prix dans le tableau de la variable prixTotalCalcul methode reducer
@@ -192,49 +189,42 @@ btnEnvoyerFormulaire.addEventListener("click", (e) => {
     //Mettre l'objet contact dans le local storage
 
     localStorage.setItem("contact", JSON.stringify(contact));
-    
+
     //Mettre les values du formulaire et les produits selectionnés dans un objet à envoyer vers le serveur
 
-  const aEnvoyer = {
-    contact,
-    products,
-    prixTotalCalcul,
-  };
+    const aEnvoyer = {
+      contact,
+      products,
+      prixTotalCalcul,
+    };
 
-  //Envoie de l'objet à envoyer dans le serveur
+    //Envoie de l'objet à envoyer dans le serveur
 
-  fetch("http://localhost:3000/api/teddies/order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(aEnvoyer),
-  })
-    .then((response) => {
-      response.json().then((data) => {
-        console.log(data.orderId);
-        localStorage.setItem("orderId", data.orderId);
-        localStorage.setItem("prixTotalCalcul", prixTotalCalcul);
-
-        window.location.href = "confirmation.html";
-      });
-      console.log(response);
-      console.log(response.orderId);
-      //Mettre id dans le local storage
+    fetch("http://localhost:3000/api/teddies/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(aEnvoyer),
     })
+      .then((response) => {
+        response.json().then((data) => {
+          localStorage.setItem("orderId", data.orderId);
+          localStorage.setItem("prixTotalCalcul", prixTotalCalcul);
 
-    .catch((error) => {
-      alert(error);
-    });
+          window.location.href = "confirmation.html";
+        });
 
+        //Mettre id dans le local storage
+      })
+
+      .catch((error) => {
+        alert(error);
+      });
   } else {
     alert("Veuillez bien remplir le formulaire");
   }
 
-  
-  
-
- 
   //Clear le local storage
 
   //Recuperer les infos dans la page de confirmation

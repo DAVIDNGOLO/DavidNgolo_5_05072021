@@ -2,7 +2,6 @@
 let params = new URLSearchParams(document.location.search);
 let idProduit = params.get("id");
 
-
 //Mise en forme des données
 fetch("http://localhost:3000/api/teddies/" + idProduit)
   .then(function (res) {
@@ -12,7 +11,7 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
   })
   .then((jsonArticle) => {
     let article = new Article(jsonArticle);
-    console.log(article.price);
+
     // Mise en forme html du sélecteur de couleurs
     let select = "<select id='couleur'>";
     article.colors.forEach((item, i) => {
@@ -49,17 +48,16 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
 
     //Afficher les quantités dans le formulaire
     const positionElementQuantite = document.getElementById("quantite_produit");
-    console.log(positionElementQuantite);
+
     positionElementQuantite.innerHTML = structureQuantité;
 
     //Enregistrement dans le LocalStorage des données du panier, compilation des données ID color price
     document.querySelector("#btnProduct").addEventListener("click", (e) => {
       e.preventDefault();
       const choixQuantite = positionElementQuantite.value;
-      console.log("choixQuantite");
-      console.log(choixQuantite);
+
       let couleur = document.getElementById("couleur").value;
-      console.log(couleur);
+
       const product = {
         //Données du panier
         id: article._id,
@@ -69,28 +67,24 @@ fetch("http://localhost:3000/api/teddies/" + idProduit)
 
         quantites: choixQuantite,
       };
-      
 
-      //Stockage de la commande 
+      //Stockage de la commande
 
       let panier = JSON.parse(localStorage.getItem("panier")) ?? [];
 
       //?? = diminutif d'un if/else : si il n'y a pas de produit enregistré, creation d'un array
 
       //JSONPARSE pour convertir les donnés  qui sont au format JSON dans le localstorage en objet javascript.
-      
+
       let condition = true;
       for (produit of panier) {
-        //console.log(product.name + product.color) ;
-        //console.log(produit.name + produit.color);
         if (product.name === produit.name && product.color === produit.color) {
-          console.log("true");
           produit.quantites = parseInt(produit.quantites) + parseInt(choixQuantite);
-          
+
           condition = false;
         }
       }
-      console.log(product);
+
       if (condition) {
         panier.push(product);
       }
